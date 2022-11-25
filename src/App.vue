@@ -1,29 +1,60 @@
 <template>
-  <div id="app">
-    <todo-app></todo-app>
+  <div :class="theme === 'light' ? 'light-theme' : 'dark-theme'" id="app" class="container">
+    <button @click="changeTheme">switch theme</button>
+    <todo-list></todo-list>
   </div>
 </template>
 
 <script>
-import TodoApp from './components/TodoApp.vue'
+import TodoList from './components/TodoList.vue'
 
 export default {
   name: 'App',
   components: {
-    TodoApp
+    TodoList,
+  },
+  data () {
+    return {
+      theme: "light"
+    }
+  }, 
+  methods: {
+    changeTheme() {
+      console.log("am changing theme");
+      this.theme = this.theme === "dark" ? "light" : "dark";
+    }
   }
 }
 </script>
 
-<style scoped>
+<style>
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: rgb(29, 29, 31);
+* {
+  box-sizing: border-box;
 }
-.app {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-align: center; */
+  color: #2c3e50;
+  margin-top: 60px;
+  font-size: 24px;
+  align-items: center;
+}
+.light-theme {
+  background-color: white;
+  color: black;
+}
+.dark-theme {
+  background-color: black;
+  color: white;
 }
 </style>
